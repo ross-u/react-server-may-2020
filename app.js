@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const projectRouter = require('./routes/project-routes');
+const taskRouter = require('./routes/task-routes');
 
 const app = express();
 
@@ -29,7 +30,7 @@ mongoose
 // MIDDLEWARE SETUP
 app.use(logger("dev"));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -38,6 +39,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // ROUTES MIDDLEWARE:
 app.use('/api', projectRouter);
+app.use("/api", taskRouter)
 
 
 module.exports = app;
